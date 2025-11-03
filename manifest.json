@@ -9,8 +9,7 @@
     "webRequest"
   ],
   "host_permissions": [
-    "*://*.instructure.com/*",
-    "*://*/courses/*"
+    "*://*.instructure.com/*"
   ],
   "background": {
     "service_worker": "background.js"

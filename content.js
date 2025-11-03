@@ -50,9 +50,15 @@ function detectMediaOnPage() {
 function reportMedia(mediaElements) {
   mediaElements.forEach(media => {
     // Extract filename from URL
-    const urlObj = new URL(media.url);
-    const pathParts = urlObj.pathname.split('/');
-    const filename = pathParts[pathParts.length - 1];
+    let filename = 'media';
+    try {
+      const urlObj = new URL(media.url);
+      const pathParts = urlObj.pathname.split('/');
+      filename = pathParts[pathParts.length - 1] || 'media';
+    } catch (e) {
+      console.warn('Invalid URL format:', media.url);
+      return; // Skip invalid URLs
+    }
     
     chrome.runtime.sendMessage({
       action: 'mediaDetected',

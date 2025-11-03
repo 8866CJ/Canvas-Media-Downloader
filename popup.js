@@ -66,9 +66,15 @@ function updateMediaDisplay() {
     urlSpan.className = 'media-url';
     
     // Extract filename or show truncated URL
-    const urlObj = new URL(url);
-    const pathParts = urlObj.pathname.split('/');
-    const filename = pathParts[pathParts.length - 1];
+    let filename = '';
+    try {
+      const urlObj = new URL(url);
+      const pathParts = urlObj.pathname.split('/');
+      filename = pathParts[pathParts.length - 1] || '';
+    } catch (e) {
+      console.warn('Invalid URL format:', url);
+      filename = url.substring(0, 30);
+    }
     urlSpan.textContent = filename || url.substring(0, 50) + '...';
     urlSpan.title = url;
     

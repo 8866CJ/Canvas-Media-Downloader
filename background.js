@@ -96,9 +96,15 @@ chrome.webRequest.onCompleted.addListener(
     // Check if it's a media file
     if (isMediaUrl(details.url) && details.statusCode === 200) {
       // Extract filename from URL
-      const urlObj = new URL(details.url);
-      const pathParts = urlObj.pathname.split('/');
-      const filename = pathParts[pathParts.length - 1] || 'media';
+      let filename = 'media';
+      try {
+        const urlObj = new URL(details.url);
+        const pathParts = urlObj.pathname.split('/');
+        filename = pathParts[pathParts.length - 1] || 'media';
+      } catch (e) {
+        console.warn('Invalid URL in webRequest:', details.url);
+        return; // Skip invalid URLs
+      }
       
       // Store for potential download
       if (!capturedMediaUrls.includes(details.url)) {
