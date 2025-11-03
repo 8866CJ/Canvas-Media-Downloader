@@ -9,16 +9,23 @@
     "webRequest"
   ],
   "host_permissions": [
-    "*://*.instructure.com/*"
+    "*://*.instructure.com/*",
+    "*://*.instructuremedia.com/*",
+    "*://sso.canvaslms.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["*://*.instructure.com/*"],
+      "matches": [
+        "*://*.instructure.com/*",
+        "*://*.instructuremedia.com/*",
+        "*://sso.canvaslms.com/*"
+      ],
       "js": ["content.js"],
-      "run_at": "document_start"
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ],
   "action": {
