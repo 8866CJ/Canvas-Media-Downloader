@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas Media Downloader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Canvas Media Downloader</h1>
+    
+    <div class="mode-section">
+      <h2>Download Mode</h2>
+      <div class="toggle-container">
+        <label class="toggle-switch">
+          <input type="checkbox" id="autoDownloadToggle" checked>
+          <span class="slider"></span>
+        </label>
+        <span class="mode-label" id="modeLabel">Automatic</span>
+      </div>
+      <p class="mode-description" id="modeDescription">
+        Media files will be downloaded automatically when detected
+      </p>
+    </div>
+    
+    <div class="media-section">
+      <h2>Detected Media</h2>
+      <div id="mediaCount" class="media-count">0 files detected</div>
+      <div id="mediaList" class="media-list">
+        <!-- Media items will be added here -->
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button id="refreshBtn" class="btn btn-secondary">Refresh List</button>
+      <button id="clearBtn" class="btn btn-secondary">Clear List</button>
+    </div>
+    
+    <div class="footer">
+      <p class="info">Visit a Canvas page to detect media files</p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
