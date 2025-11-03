@@ -29,8 +29,19 @@ function detectMediaOnPage() {
   const iframes = document.querySelectorAll('iframe');
   iframes.forEach(iframe => {
     const src = iframe.src;
-    if (src && (src.includes('instructuremedia.com') || src.includes('video') || src.includes('media'))) {
-      mediaElements.push({ type: 'iframe', url: src });
+    if (src) {
+      try {
+        const url = new URL(src);
+        // Check if hostname ends with instructuremedia.com or contains video/media keywords
+        if (url.hostname.endsWith('.instructuremedia.com') || 
+            url.hostname === 'instructuremedia.com' ||
+            url.pathname.includes('/video/') || 
+            url.pathname.includes('/media/')) {
+          mediaElements.push({ type: 'iframe', url: src });
+        }
+      } catch (e) {
+        // Invalid URL, skip
+      }
     }
   });
   

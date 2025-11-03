@@ -28,7 +28,7 @@ const MEDIA_PATTERNS = [
   /\/videos\//i,
   /\/audio\//i,
   /video\/|audio\//i,
-  /\.instructuremedia\.com/i,
+  /^https?:\/\/([a-z0-9-]+\.)*instructuremedia\.com\//i,
   /canvas.*\.(mp4|webm|mp3)/i
 ];
 
